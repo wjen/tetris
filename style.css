@@ -48,7 +48,7 @@ body {
 
 .tetromino {
   border-style: solid;
-  border-width: 1px;
+  border-width: 2px;
   border-left-color: rgba(255, 255, 255, 0.2);
   border-top-color: rgba(255, 255, 255, 0.33);
   border-right-color: rgba(0, 0, 0, 0.15);
@@ -57,7 +57,7 @@ body {
 
 .taken {
   border-style: solid;
-  border-width: 1px;
+  border-width: 2px;
   background-color: #fc354c;
   border-left-color: rgba(255, 255, 255, 0.2);
   border-top-color: rgba(255, 255, 255, 0.33);
@@ -113,6 +113,15 @@ body {
     0 4px 2px rgba(0, 0, 0, 0.5);
 }
 
+.button.play {
+  background: #51a398;
+  border: 1px solid #51a398;
+  background-image: linear-gradient(to bottom, #70d1c4, #51a398);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset,
+    0 -1px 0 rgba(255, 255, 255, 0.1) inset, 0 4px 0 #1c6158,
+    0 4px 2px rgba(0, 0, 0, 0.5);
+}
+
 .button:before {
   background: #f0f0f0;
   border-radius: 5px;
@@ -142,4 +151,8 @@ body {
   border-radius: 5px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) inset, 0 1px 0 #fff;
   color: #85796b;
+}
+
+.hide {
+  display: none;
 }

@@ -1,16 +1,17 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const startButton = document.querySelector(".start-button");
+  const startButton = document.querySelector("#start-button");
   const scoreDisplay = document.querySelector(".score-display");
+  const playAgainButton = document.querySelector("#play-again");
   const GRID_WIDTH = 10;
   const GRID_HEIGHT = 20;
   const GRID_SIZE = GRID_WIDTH * GRID_HEIGHT;
-  const grid = createGrid();
+  let grid = createGrid();
   let squares = Array.from(document.querySelectorAll(".grid div"));
   let nextRandom = 0;
   let timerId;
   let score = 0;
   const colors = ["teal", "silver", "purple", "yellow", "blue"];
-
+  console.log(squares);
   function createGrid() {
     // the main grid
     let grid = document.querySelector(".grid");
@@ -240,7 +241,6 @@ document.addEventListener("DOMContentLoaded", () => {
         colors[nextRandom];
     });
   }
-
   // add start functionality to start button
   startButton.addEventListener("click", () => {
     if (timerId) {
@@ -295,6 +295,28 @@ document.addEventListener("DOMContentLoaded", () => {
     ) {
       scoreDisplay.innerHTML = "end";
       clearInterval(timerId);
+      showPlayAgainButton();
     }
   }
+
+  function showPlayAgainButton() {
+    playAgainButton.classList.remove("hide");
+    startButton.classList.add("hide");
+  }
+
+  playAgainButton.addEventListener("click", () => {
+    // remove any trace of tetromino from the entire grid
+    for (let i = 0; i < squares.length - 10; i++) {
+      squares[i].classList.remove("tetromino");
+      squares[i].classList.remove("taken");
+      squares[i].style.backgroundColor = "";
+    }
+    scoreDisplay.innerHTML = 0;
+    draw();
+    timerId = setInterval(moveDown, 1000);
+    nextRandom = Math.floor(Math.random() * theTetrominoes.length);
+    displayShape();
+    playAgainButton.classList.add("hide");
+    startButton.classList.remove("hide");
+  });
 });
