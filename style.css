@@ -8,6 +8,7 @@ body {
   font-family: "Montserrat", sans-serif;
   font-size: 1.6rem;
   background: radial-gradient(#ed4264, #ffedbc);
+  color: #51a398;
 }
 .header {
   text-align: center;
@@ -20,16 +21,23 @@ body {
   font-weight: 400;
   letter-spacing: 1.5rem;
 }
-.container {
+
+.game-area {
   display: flex;
   justify-content: center;
-  align-items: top;
 }
+
+.game {
+  height: 0;
+  width: 300px;
+}
+
 .grid {
   width: 200px;
   height: 400px;
   background-color: rgba(0, 0, 0, 0.1);
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
 }
 
@@ -57,16 +65,82 @@ body {
   border-bottom-color: rgba(0, 0, 0, 0.5);
 }
 
-.mini-grid {
-  margin-left: 50px;
-  width: 80px;
-  height: 80px;
+.next-grid {
   display: flex;
   flex-wrap: wrap;
-  background-color: rgba(0, 0, 0, 0.1);
+  width: 80px;
+  height: 80px;
+  margin-bottom: 60px;
 }
 
-.mini-grid div {
+.next-grid div {
   height: 20px;
   width: 20px;
+}
+
+.score,
+.lines-display {
+  padding-top: 1rem;
+  font-size: 1.2rem;
+}
+
+.score-display {
+  font-size: 5rem;
+  color: rgb(133, 121, 107, 0.5);
+}
+
+.next-shape {
+  width: 100px;
+  padding-left: 20px;
+  margin-top: -50px;
+}
+
+.button {
+  position: relative;
+  height: 2.2rem;
+  color: #fff;
+  letter-spacing: 1px;
+  line-height: 23px;
+  font-size: 10px;
+  display: block;
+  margin: 30px;
+  background: #d25068;
+  border: 1px solid #d25068;
+  width: 12rem;
+  background-image: linear-gradient(to bottom, #f66c7b, #d25068);
+  border-radius: 5px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset,
+    0 -1px 0 rgba(255, 255, 255, 0.1) inset, 0 4px 0 #ad4257,
+    0 4px 2px rgba(0, 0, 0, 0.5);
+}
+
+.button:before {
+  background: #f0f0f0;
+  border-radius: 5px;
+  position: absolute;
+  content: "";
+  left: -6px;
+  right: -6px;
+  top: -6px;
+  bottom: -10px;
+  z-index: -1;
+}
+
+.button:hover {
+  background: #f66c7b;
+}
+
+.display {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  width: 16rem;
+  height: 21.5rem;
+  background: #f0f0f0;
+  background-image: linear-gradient(#d0d0d0, #f0f0f0);
+  border-radius: 5px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) inset, 0 1px 0 #fff;
+  color: #85796b;
 }

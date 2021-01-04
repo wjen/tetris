@@ -1,13 +1,40 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const grid = document.querySelector(".grid");
-  const startButton = document.querySelector("#start-button");
-  const scoreDisplay = document.querySelector("#score");
-  let squares = Array.from(document.querySelectorAll(".grid div"));
+  const startButton = document.querySelector(".start-button");
+  const scoreDisplay = document.querySelector(".score");
   const GRID_WIDTH = 10;
+  const GRID_HEIGHT = 20;
+  const GRID_SIZE = GRID_WIDTH * GRID_HEIGHT;
+  const grid = createGrid();
+  let squares = Array.from(document.querySelectorAll(".grid div"));
   let nextRandom = 0;
   let timerId;
   let score = 0;
-  const colors = ["teal", "red", "purple", "green", "blue"];
+  const colors = ["teal", "silver", "purple", "yellow", "blue"];
+
+  function createGrid() {
+    // the main grid
+    let grid = document.querySelector(".grid");
+    for (let i = 0; i < GRID_SIZE; i++) {
+      let gridElement = document.createElement("div");
+      grid.appendChild(gridElement);
+    }
+
+    // set base of grid
+    for (let i = 0; i < GRID_WIDTH; i++) {
+      let gridElement = document.createElement("div");
+      gridElement.setAttribute("class", "taken");
+      grid.appendChild(gridElement);
+    }
+
+    let nextGrid = document.querySelector(".next-grid");
+    // Since 16 is the max grid size in which all the Tetrominoes
+    // can fit in we create one here
+    for (let i = 0; i < 16; i++) {
+      let gridElement = document.createElement("div");
+      nextGrid.appendChild(gridElement);
+    }
+    return grid;
+  }
 
   const lTetromino = [
     [1, 2, GRID_WIDTH + 1, GRID_WIDTH * 2 + 1],
@@ -168,7 +195,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // show next tetromino in mini-grid
-  const displaySquares = document.querySelectorAll(".mini-grid div");
+  const displaySquares = document.querySelectorAll(".next-grid div");
   const displayWidth = 4;
   const displayIndex = 0;
   // the Tetrominoes without rotations
