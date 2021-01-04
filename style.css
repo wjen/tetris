@@ -70,7 +70,6 @@ body {
   flex-wrap: wrap;
   width: 80px;
   height: 80px;
-  margin-bottom: 60px;
 }
 
 .next-grid div {
@@ -136,8 +135,8 @@ body {
   justify-content: space-between;
   align-items: center;
   text-align: center;
-  width: 16rem;
-  height: 21.5rem;
+  width: 14rem;
+  height: 26rem;
   background: #f0f0f0;
   background-image: linear-gradient(#d0d0d0, #f0f0f0);
   border-radius: 5px;

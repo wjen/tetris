@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const startButton = document.querySelector(".start-button");
-  const scoreDisplay = document.querySelector(".score");
+  const scoreDisplay = document.querySelector(".score-display");
   const GRID_WIDTH = 10;
   const GRID_HEIGHT = 20;
   const GRID_SIZE = GRID_WIDTH * GRID_HEIGHT;
@@ -103,17 +103,21 @@ document.addEventListener("DOMContentLoaded", () => {
   // assign function to keyCodes
   function control(e) {
     if (e.keyCode === 37) {
+      e.preventDefault();
       moveLeft();
     } else if (e.keyCode === 38) {
+      e.preventDefault();
       rotate();
     } else if (e.keyCode === 39) {
+      e.preventDefault();
       moveRight();
     } else if (e.keyCode === 40) {
+      e.preventDefault();
       moveDown();
     }
   }
 
-  document.addEventListener("keyup", control);
+  document.addEventListener("keydown", control);
 
   // move down function
   function moveDown() {
@@ -150,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function moveLeft() {
     undraw();
     const isAtLeftEdge = current.some(
-      (index) => (currentPosition + index) % GRID_WIDTH == 0
+      (index) => (currentPosition + index) % GRID_WIDTH === 0
     );
     if (!isAtLeftEdge) {
       currentPosition -= 1;
@@ -191,6 +195,22 @@ document.addEventListener("DOMContentLoaded", () => {
       currentRotation = 0;
     }
     current = theTetrominoes[random][currentRotation];
+    if (
+      current.some((index) =>
+        squares[currentPosition + index].classList.contains("taken")
+      ) ||
+      (current.some(
+        (index) => (currentPosition + index) % GRID_WIDTH === GRID_WIDTH - 1
+      ) &&
+        current.some((index) => (currentPosition + index) % GRID_WIDTH === 0))
+    ) {
+      console.log("bam");
+      currentRotation--;
+      if (currentRotation < 0) {
+        currentRotation = current.length;
+      }
+      current = theTetrominoes[random][currentRotation];
+    }
     draw();
   }
 
